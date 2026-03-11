@@ -40,7 +40,7 @@ The idea is simple: if your phone feels boring, you'll pick it up less.
 
 ### Try it now
 
-> [**Download latest debug APK**](https://github.com/come/vide/releases/download/v0.1.0/app-debug.apk)
+> [**Download latest APK**](https://github.com/come/vide/releases/latest)
 
 ### From releases
 
