@@ -13,4 +13,3 @@ local.properties
 *.aab
 *.jks
 *.keystore
-screenshots/*.png

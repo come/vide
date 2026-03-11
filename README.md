@@ -2,22 +2,15 @@
 
 A minimal Android launcher designed to make you use your phone less.
 
-```
-12:45
-MERCREDI, 11 MARS          14:00 BRIEFING DESIGN
-                            16:30 APPEL CLIENT
-
-Téléphone
-Messages
-Navigateur
-Appareil photo
-Spotify
-Maps
-Notes
-Paramètres
-
-vide/                       🔍  ◯  ←
-```
+<p align="center">
+  <img src="screenshots/01_home.png" width="220" alt="Home screen" />
+  &nbsp;&nbsp;
+  <img src="screenshots/02_search.png" width="220" alt="Search" />
+  &nbsp;&nbsp;
+  <img src="screenshots/02b_search_contact.png" width="220" alt="Contact actions" />
+  &nbsp;&nbsp;
+  <img src="screenshots/03_notifications.png" width="220" alt="Notifications" />
+</p>
 
 ## Why
 
@@ -45,25 +38,25 @@ The idea is simple: if your phone feels boring, you'll pick it up less.
 | Single font (Inter) | Uniform, calm, utilitarian |
 | Friction by design | Search to find, text to read, no shortcuts |
 
-## Screenshots
-
-*Coming soon*
-
 ## Install
+
+### Try it now
+
+> [**Download latest debug APK**](https://github.com/come/vide/releases/download/v0.1.0/app-debug.apk)
 
 ### From releases
 
-Download the latest APK from [Releases](https://github.com/come/vide/releases).
+All versions available on the [Releases page](https://github.com/come/vide/releases).
 
 ### Build from source
 
 ```bash
 git clone https://github.com/come/vide.git
 cd vide
-./gradlew assembleRelease
+./gradlew assembleDebug
 ```
 
-APK will be at `app/build/outputs/apk/release/`.
+APK will be at `app/build/outputs/apk/debug/`.
 
 ## Permissions
 
