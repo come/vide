@@ -3,11 +3,11 @@
 A minimal Android launcher designed to make you use your phone less.
 
 <p align="center">
-  <img src="screenshots/01_home.png" width="270" alt="Home screen" />
+  <img src="screenshots/01_home.png" width="220" alt="Home screen" />
   &nbsp;&nbsp;
-  <img src="screenshots/02b_search_contact.png" width="270" alt="Search & contacts" />
+  <img src="screenshots/02b_search_contact.png" width="220" alt="Search & contacts" />
   &nbsp;&nbsp;
-  <img src="screenshots/03_notifications.png" width="270" alt="Notifications" />
+  <img src="screenshots/03_notifications.png" width="220" alt="Notifications" />
 </p>
 
 ## Why
