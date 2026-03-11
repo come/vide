@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vide/ — use your phone less</title>
+    <meta name="description" content="A minimal Android launcher designed to make you use your phone less. No icons. No colors. No animations. Just text.">
+    <meta property="og:title" content="vide/ — use your phone less">
+    <meta property="og:description" content="A minimal Android launcher. No icons. No colors. No animations. Just text on a black screen.">
+    <meta property="og:image" content="https://come.github.io/vide/og.png">
+    <meta property="og:url" content="https://come.github.io/vide/">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: #000;
+            color: #eee;
+            font-family: 'Inter', -apple-system, sans-serif;
+            font-weight: 300;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .page {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 80px 32px 64px;
+        }
+
+        h1 {
+            font-size: clamp(48px, 10vw, 96px);
+            font-weight: 300;
+            letter-spacing: -0.04em;
+            line-height: 1;
+            margin-bottom: 16px;
+        }
+
+        .tagline {
+            font-size: clamp(16px, 3vw, 22px);
+            color: #888;
+            margin-bottom: 48px;
+            max-width: 480px;
+            line-height: 1.5;
+        }
+
+        .cta {
+            display: inline-block;
+            color: #eee;
+            border: 1px solid #444;
+            padding: 14px 32px;
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            font-weight: 400;
+            text-decoration: none;
+            letter-spacing: 0.02em;
+            transition: border-color 0.2s;
+        }
+
+        .cta:hover { border-color: #eee; }
+
+        .cta-secondary {
+            color: #666;
+            border-color: transparent;
+            margin-left: 16px;
+        }
+
+        .cta-secondary:hover { color: #eee; border-color: transparent; }
+
+        .screenshots {
+            display: flex;
+            gap: 16px;
+            margin: 80px 0;
+            overflow-x: auto;
+            padding-bottom: 8px;
+        }
+
+        .screenshots img {
+            width: 240px;
+            flex-shrink: 0;
+            border-radius: 0;
+        }
+
+        .section {
+            margin: 80px 0;
+        }
+
+        .section h2 {
+            font-size: 13px;
+            font-weight: 400;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: #555;
+            margin-bottom: 24px;
+        }
+
+        .section p {
+            font-size: 17px;
+            line-height: 1.7;
+            color: #aaa;
+            max-width: 560px;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 32px;
+        }
+
+        .feature h3 {
+            font-size: 15px;
+            font-weight: 400;
+            color: #eee;
+            margin-bottom: 8px;
+        }
+
+        .feature p {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .principles {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .principle {
+            display: flex;
+            gap: 24px;
+            font-size: 14px;
+        }
+
+        .principle .rule {
+            color: #eee;
+            min-width: 160px;
+            font-weight: 400;
+        }
+
+        .principle .why {
+            color: #555;
+        }
+
+        footer {
+            margin-top: 120px;
+            padding-top: 32px;
+            border-top: 1px solid #1a1a1a;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            color: #444;
+        }
+
+        footer a {
+            color: #666;
+            text-decoration: none;
+        }
+
+        footer a:hover { color: #eee; }
+
+        @media (max-width: 600px) {
+            .page { padding: 48px 20px 40px; }
+            .screenshots img { width: 180px; }
+            .cta-secondary { margin-left: 0; margin-top: 12px; display: inline-block; }
+            .principle { flex-direction: column; gap: 4px; }
+            .principle .rule { min-width: auto; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <h1>vide/</h1>
+        <p class="tagline">
+            A minimal Android launcher designed to make you use your phone less.
+            No icons. No colors. No animations. Just text.
+        </p>
+
+        <a href="https://github.com/come/vide/releases/latest" class="cta">Download APK</a>
+        <a href="https://github.com/come/vide" class="cta cta-secondary">Source code</a>
+
+        <div class="screenshots">
+            <img src="screenshots/01_home.png" alt="Home">
+            <img src="screenshots/02b_search_contact.png" alt="Search">
+            <img src="screenshots/03_notifications.png" alt="Notifications">
+        </div>
+
+        <div class="section">
+            <h2>Why</h2>
+            <p>
+                Every launcher is designed to keep you engaged — colorful icons, widgets, feeds, suggestions.
+                vide/ does the opposite. It strips your home screen down to plain text, removes visual stimulation,
+                and adds just enough friction to make you think twice before opening an app.
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>Features</h2>
+            <div class="features">
+                <div class="feature">
+                    <h3>Text-only home</h3>
+                    <p>Most-used apps as plain text, auto-sorted by usage frequency.</p>
+                </div>
+                <div class="feature">
+                    <h3>Smart search</h3>
+                    <p>Find apps and contacts with fuzzy matching. Call, SMS, WhatsApp, email in one tap.</p>
+                </div>
+                <div class="feature">
+                    <h3>Calendar glance</h3>
+                    <p>Upcoming events next to the clock. Scrollable. Tap to open.</p>
+                </div>
+                <div class="feature">
+                    <h3>Notification center</h3>
+                    <p>Mark important. Swipe to dismiss. Filter by category. Clear all skips what matters.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Design principles</h2>
+            <div class="principles">
+                <div class="principle">
+                    <span class="rule">Monochrome only</span>
+                    <span class="why">No visual reward for unlocking</span>
+                </div>
+                <div class="principle">
+                    <span class="rule">No app icons</span>
+                    <span class="why">Removes brand recognition dopamine</span>
+                </div>
+                <div class="principle">
+                    <span class="rule">No animations</span>
+                    <span class="why">Nothing to watch, nothing to wait for</span>
+                </div>
+                <div class="principle">
+                    <span class="rule">Single font</span>
+                    <span class="why">Uniform, calm, utilitarian</span>
+                </div>
+                <div class="principle">
+                    <span class="rule">Friction by design</span>
+                    <span class="why">Search to find, text to read, no shortcuts</span>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <span>MIT License</span>
+            <a href="https://github.com/come/vide">github.com/come/vide</a>
+        </footer>
+    </div>
+</body>
+</html>
