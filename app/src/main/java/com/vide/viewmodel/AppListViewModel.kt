@@ -6,6 +6,7 @@ import android.os.Build
 import android.content.pm.PackageManager
 import android.content.pm.ResolveInfo
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.viewModelScope
 import com.vide.data.CalendarReader
 import com.vide.data.ContactSearcher
 import com.vide.data.SmartSearch
@@ -13,9 +14,12 @@ import com.vide.data.UsageTracker
 import com.vide.model.AppInfo
 import com.vide.model.CalendarEvent
 import com.vide.model.ContactAction
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class AppListViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -54,39 +58,47 @@ class AppListViewModel(application: Application) : AndroidViewModel(application)
     }
 
     private fun loadApps() {
-        val pm = getApplication<Application>().packageManager
-        val intent = Intent(Intent.ACTION_MAIN).apply {
-            addCategory(Intent.CATEGORY_LAUNCHER)
-        }
+        viewModelScope.launch {
+            val appList = withContext(Dispatchers.IO) {
+                val pm = getApplication<Application>().packageManager
+                val intent = Intent(Intent.ACTION_MAIN).apply {
+                    addCategory(Intent.CATEGORY_LAUNCHER)
+                }
 
-        val resolveInfos: List<ResolveInfo> = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            pm.queryIntentActivities(intent, PackageManager.ResolveInfoFlags.of(0))
-        } else {
-            @Suppress("DEPRECATION")
-            pm.queryIntentActivities(intent, 0)
-        }
+                val resolveInfos: List<ResolveInfo> = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                    pm.queryIntentActivities(intent, PackageManager.ResolveInfoFlags.of(0))
+                } else {
+                    @Suppress("DEPRECATION")
+                    pm.queryIntentActivities(intent, 0)
+                }
 
-        val appList = resolveInfos
-            .map { ri ->
-                AppInfo(
-                    label = ri.loadLabel(pm).toString(),
-                    packageName = ri.activityInfo.packageName
-                )
+                resolveInfos
+                    .map { ri ->
+                        AppInfo(
+                            label = ri.loadLabel(pm).toString(),
+                            packageName = ri.activityInfo.packageName
+                        )
+                    }
+                    .filter { it.packageName != getApplication<Application>().packageName }
+                    .distinctBy { it.packageName }
+                    .sortedBy { it.label.lowercase() }
             }
-            .filter { it.packageName != getApplication<Application>().packageName }
-            .distinctBy { it.packageName }
-            .sortedBy { it.label.lowercase() }
 
-        _apps.value = appList
-        _filteredApps.value = appList
-        updateHomeApps()
+            _apps.value = appList
+            _filteredApps.value = appList
+            updateHomeApps()
+        }
     }
 
     private fun updateHomeApps() {
-        val topApps = usageTracker.getTopApps(_apps.value, HOME_APP_COUNT)
-        _lastOpenedPackage.value = usageTracker.getLastOpened()
-        _pinnedApps.value = usageTracker.getPinnedApps()
-        _homeApps.value = topApps
+        viewModelScope.launch {
+            val topApps = withContext(Dispatchers.IO) {
+                usageTracker.getTopApps(_apps.value, HOME_APP_COUNT)
+            }
+            _lastOpenedPackage.value = usageTracker.getLastOpened()
+            _pinnedApps.value = usageTracker.getPinnedApps()
+            _homeApps.value = topApps
+        }
     }
 
     fun recordLaunch(packageName: String) {
@@ -131,12 +143,16 @@ class AppListViewModel(application: Application) : AndroidViewModel(application)
     }
 
     fun refreshApps() {
-        loadApps()
-        updateSearch(_searchQuery.value)
+        updateHomeApps()
     }
 
     fun refreshCalendar() {
-        _calendarEvents.value = CalendarReader.getEvents(getApplication())
+        viewModelScope.launch {
+            val events = withContext(Dispatchers.IO) {
+                CalendarReader.getEvents(getApplication())
+            }
+            _calendarEvents.value = events
+        }
     }
 
     companion object {
