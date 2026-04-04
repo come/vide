@@ -143,7 +143,7 @@ class AppListViewModel(application: Application) : AndroidViewModel(application)
     }
 
     fun refreshApps() {
-        updateHomeApps()
+        loadApps()
     }
 
     fun refreshCalendar() {

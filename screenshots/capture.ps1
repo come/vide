@@ -64,7 +64,7 @@ function CaptureSearch {
     GoHome
     adb shell input tap $searchX $centerY
     Start-Sleep -Milliseconds 800
-    adb shell input text "magdeleine"
+    adb shell input text "test%s"
     Snap "02_search"
     # Back
     adb shell input keyevent KEYCODE_BACK
@@ -75,7 +75,7 @@ function CaptureSearchContact {
     GoHome
     adb shell input tap $searchX $centerY
     Start-Sleep -Milliseconds 800
-    adb shell input text "magdeleine"
+    adb shell input text "test%s"
     Start-Sleep -Milliseconds 500
     # Tap 1st contact (2nd list item, after google search row)
     # statusbar(~48) + searchField(24+20+16=60) + divider(1) + listPadTop(32) + googleRow(~44) + contactCenter(20) = ~205dp
